@@ -6,7 +6,12 @@
 		{
 			"label": "Launch emrun webserver",
 			"type": "shell",
-			"command": ".${/}runWebServer.bat",
+			"windows":{
+				"command": ".\\runWebServer.bat",
+			},
+			"linux":{
+				"command": "./runWebServer.sh",
+			},
 			"isBackground": true,
 			"problemMatcher": [
 				{
@@ -24,7 +29,12 @@
 		{
 			"label": "Build EmscriptenThreadLocalCrash",
 			"type": "shell",
-			"command": ".${/}build.bat",
+			"windows":{
+				"command": ".\\build.bat",
+			},
+			"linux":{
+				"command": "./build.sh",
+			},
 			"dependsOn": [
 				"Launch emrun webserver"
 			]

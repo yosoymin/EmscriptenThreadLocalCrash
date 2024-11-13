@@ -9,7 +9,7 @@ std::map<std::string, std::string>& getMap()
 	return sMap;
 }
 
-int main()
+int main(int, char**)
 {
 	std::cout << "start main\n";
 	getMap()["test"] = "";			// The program crashes here
