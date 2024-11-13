@@ -1,19 +1,29 @@
-#include <map>
 #include <iostream>
 
 int simpleFunction();
 
-std::map<std::string, std::string>& getMap()
+struct Test
 {
-	static thread_local std::map<std::string, std::string> sMap;	// If you remove the thread_local specifier, the program will not crash
-	return sMap;
+	int* data = nullptr;
+	void setValue(int v)
+	{
+		if (!data)
+			data = new int();
+		*data = v;
+	}
+};
+
+Test& getTest()
+{
+	static thread_local Test test;
+	return test;
 }
 
 int main(int, char**)
 {
 	std::cout << "start main\n";
-	getMap()["test"] = "";			// The program crashes here
-	std::cout << "should crash in the line before\n";
+	// The program crashes here
+	getTest().setValue(15);
 	std::cout << "end main - " << simpleFunction() << "\n";
 	return 0;
 }
